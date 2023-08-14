@@ -19,7 +19,7 @@ import api.rest.Devsu.ejerciciopractico.dto.ReporteDTO;
 import api.rest.Devsu.ejerciciopractico.service.ReporteService;
 
 @RestController
-@RequestMapping("/reporte")
+@RequestMapping("/reportes")
 public class ReporteController {
 
 	@Autowired

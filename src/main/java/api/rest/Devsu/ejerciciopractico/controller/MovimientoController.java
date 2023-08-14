@@ -22,7 +22,7 @@ import api.rest.Devsu.ejerciciopractico.model.MovimientoModel;
 import api.rest.Devsu.ejerciciopractico.service.MovimientoService;
 
 @RestController
-@RequestMapping("/movimiento")
+@RequestMapping("/movimientos")
 public class MovimientoController {
 
 	@Autowired

@@ -12,7 +12,10 @@ import api.rest.Devsu.ejerciciopractico.model.ClienteModel;
 import api.rest.Devsu.ejerciciopractico.repository.ClienteRepository;
 import api.rest.Devsu.ejerciciopractico.service.ClienteService;
 import api.rest.Devsu.ejerciciopractico.service.exception.ServiceException;
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
@@ -82,7 +85,8 @@ public class ClienteServiceImpl implements ClienteService {
 		clientesModel = clienteRepository.findById(id);
 
 		if (clientesModel.isEmpty()) {
-			throw new ServiceException("El cliente no existe.");
+			log.info("El cliente ingresado no existe. [{}]",id);
+			throw new ServiceException("El cliente ingresado no existe.");
 		}
 
 		List<ClienteDTO> clientesDTO = clientesModel.stream().filter(cliente -> "1".equals(cliente.getEstado()))
@@ -101,7 +105,8 @@ public class ClienteServiceImpl implements ClienteService {
 		clientesModel = clienteRepository.findByNumDoc(docIdenti);
 
 		if (clientesModel.isEmpty()) {
-			throw new ServiceException("El cliente no existe.");
+			log.info("El cliente ingresado no existe. [{}]",docIdenti);
+			throw new ServiceException("El cliente ingresado no existe.");
 		}
 
 		List<ClienteDTO> clientesDTO = clientesModel.stream().filter(cliente -> "1".equals(cliente.getEstado()))

@@ -22,7 +22,7 @@ import api.rest.Devsu.ejerciciopractico.model.CuentaModel;
 import api.rest.Devsu.ejerciciopractico.service.CuentaService;
 
 @RestController
-@RequestMapping("/cuenta")
+@RequestMapping("/cuentas")
 public class CuentaController {
 
 	@Autowired

@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import api.rest.Devsu.ejerciciopractico.dto.ClienteDTO;
 import api.rest.Devsu.ejerciciopractico.model.ClienteModel;
 import api.rest.Devsu.ejerciciopractico.service.ClienteService;
+import api.rest.Devsu.ejerciciopractico.service.exception.ServiceException;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
@@ -49,10 +50,8 @@ public class ClienteController {
 
 		Optional<ClienteDTO> optionalClienteDTO = Optional.ofNullable(cliente);
 
-		if (optionalClienteDTO.isPresent()) {
-			System.out.println("El cliente existe.");
-		} else {
-			System.out.println("El cliente no existe.");
+		if (!optionalClienteDTO.isPresent()) {
+			throw new ServiceException("El Cliente no existe.");
 		}
 
 		return new ResponseEntity<ClienteDTO>(cliente, HttpStatus.OK);

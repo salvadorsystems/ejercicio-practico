@@ -14,7 +14,9 @@ import api.rest.Devsu.ejerciciopractico.repository.CuentaRepository;
 import api.rest.Devsu.ejerciciopractico.repository.MovimientoRepository;
 import api.rest.Devsu.ejerciciopractico.service.MovimientoService;
 import api.rest.Devsu.ejerciciopractico.service.exception.ServiceException;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
 
@@ -60,11 +62,13 @@ public class MovimientoServiceImpl implements MovimientoService {
 		}
 
 		if (!movimientoModel.getTipMov().equalsIgnoreCase("Deposito") && contadorLimite > valorLimite) {
+			log.info("Cupo Diario Exedido. [{}]",valorLimite);
 			throw new ServiceException("Cupo Diario Exedido.");
 		}
 
 		if (!movimientoModel.getTipMov().equalsIgnoreCase("Deposito")
 				&& cuentaModel.getSaldoInit() < movimientoModel.getValor()) {
+			log.info("Saldo no Disponible. [{}]",movimientoModel.getValor());
 			throw new ServiceException("Saldo no Disponible.");
 		}
 

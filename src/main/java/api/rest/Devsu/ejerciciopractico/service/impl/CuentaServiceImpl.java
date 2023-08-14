@@ -14,7 +14,9 @@ import api.rest.Devsu.ejerciciopractico.model.CuentaModel;
 import api.rest.Devsu.ejerciciopractico.repository.ClienteRepository;
 import api.rest.Devsu.ejerciciopractico.repository.CuentaRepository;
 import api.rest.Devsu.ejerciciopractico.service.CuentaService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class CuentaServiceImpl implements CuentaService {
 
@@ -43,7 +45,7 @@ public class CuentaServiceImpl implements CuentaService {
 	@Override
 	public CuentaDTO updateCuenta(CuentaDTO Cuenta) {
 		// TODO Auto-generated method stub
-
+		log.info("Actualizar Cuenta. [{}]",Cuenta);
 		CuentaModel cuentaModel = mapToCuentaModel(Cuenta);
 
 		cuentaRepository.save(cuentaModel);

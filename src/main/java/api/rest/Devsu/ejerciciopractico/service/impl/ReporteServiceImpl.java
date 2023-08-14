@@ -12,7 +12,9 @@ import api.rest.Devsu.ejerciciopractico.dto.ReporteDTO;
 import api.rest.Devsu.ejerciciopractico.model.MovimientoModel;
 import api.rest.Devsu.ejerciciopractico.repository.MovimientoRepository;
 import api.rest.Devsu.ejerciciopractico.service.ReporteService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class ReporteServiceImpl implements ReporteService {
 
@@ -23,7 +25,7 @@ public class ReporteServiceImpl implements ReporteService {
 	public List<ReporteDTO> getReporteByFechaCuenta_numDoc(LocalDateTime fechaInicio, LocalDateTime fechaFin,
 			String numDoc) {
 		// TODO Auto-generated method stub
-
+		log.info("Reporte del cliente. [{}]",numDoc);
 		List<MovimientoModel> movimientos = new ArrayList<>();
 		movimientos = movimientoRepository.findByFechaBetweenAndCuentaModel_ClienteModel_NumDoc(fechaInicio, fechaFin,
 				numDoc);

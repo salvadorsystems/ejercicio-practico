@@ -28,57 +28,57 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@GetMapping(produces = "application/json")
 	public ResponseEntity<List<ClienteDTO>> listar() {
 		List<ClienteDTO> clientes = new ArrayList<>();
 		clientes = clienteService.findClienteAll();
 		return new ResponseEntity<List<ClienteDTO>>(clientes, HttpStatus.OK);
 	}
-	
+
 	@PostMapping
-    public ResponseEntity<ClienteDTO> crearCliente(@Valid @RequestBody ClienteDTO cliente){	
-		
+	public ResponseEntity<ClienteDTO> crearCliente(@Valid @RequestBody ClienteDTO cliente) {
+
 		clienteService.createCliente(cliente);
 		return new ResponseEntity<ClienteDTO>(HttpStatus.CREATED);
 	}
-	
-	@GetMapping("/{docIdenti}")
-	public ResponseEntity<ClienteDTO> getClienteByIdenti(@PathVariable("docIdenti") String docIdenti){
-		ClienteDTO cliente =  clienteService.getClienteByIdenti(docIdenti);
-		
-        Optional<ClienteDTO> optionalClienteDTO = Optional.ofNullable(cliente);
 
-        if (optionalClienteDTO.isPresent()) {
-            System.out.println("El cliente existe.");
-        } else {
-            System.out.println("El cliente no existe.");
-        }
+	@GetMapping("/{docIdenti}")
+	public ResponseEntity<ClienteDTO> getClienteByIdenti(@PathVariable("docIdenti") String docIdenti) {
+		ClienteDTO cliente = clienteService.getClienteByIdenti(docIdenti);
+
+		Optional<ClienteDTO> optionalClienteDTO = Optional.ofNullable(cliente);
+
+		if (optionalClienteDTO.isPresent()) {
+			System.out.println("El cliente existe.");
+		} else {
+			System.out.println("El cliente no existe.");
+		}
 
 		return new ResponseEntity<ClienteDTO>(cliente, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<ClienteModel> deleteCliente(@PathVariable("id") Long id){
+	public ResponseEntity<ClienteModel> deleteCliente(@PathVariable("id") Long id) {
 		clienteService.deleteCliente(id);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	@PutMapping("/{id}")
-	public ClienteDTO updateCliente(@PathVariable("id") Long id, @Valid @RequestBody ClienteDTO cliente){
-		
+	public ClienteDTO updateCliente(@PathVariable("id") Long id, @Valid @RequestBody ClienteDTO cliente) {
+
 		ClienteDTO clienteDTO = clienteService.getCliente(id);
-			clienteDTO.setNombres(cliente.getNombres());
-        	clienteDTO.setGenero(cliente.getGenero());
-        	clienteDTO.setTipoDoc(cliente.getTipoDoc());
-        	clienteDTO.setNumDoc(cliente.getNumDoc());
-        	clienteDTO.setDireccion(cliente.getDireccion());
-        	clienteDTO.setTelefono(cliente.getTelefono());
-        	clienteDTO.setContraseña(cliente.getContraseña());
-        	clienteDTO.setEstado(cliente.getEstado());
-        		
+		clienteDTO.setNombres(cliente.getNombres());
+		clienteDTO.setGenero(cliente.getGenero());
+		clienteDTO.setTipoDoc(cliente.getTipoDoc());
+		clienteDTO.setNumDoc(cliente.getNumDoc());
+		clienteDTO.setDireccion(cliente.getDireccion());
+		clienteDTO.setTelefono(cliente.getTelefono());
+		clienteDTO.setContraseña(cliente.getContraseña());
+		clienteDTO.setEstado(cliente.getEstado());
+
 		return clienteService.updateCliente(clienteDTO);
-		
+
 	}
-	
+
 }

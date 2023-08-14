@@ -12,14 +12,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReporteDTO {
-	
+
 	private LocalDateTime fecha;
-    private String cliente;
-    private String numCuenta;
-    private String tipCuenta;
-    private double saldoInit; 
-    private String estado;
-    private String movimiento;
-    private double saldoDisponible;
-        
+	private String cliente;
+	private String numCuenta;
+	private String tipCuenta;
+	private double saldoInit;
+	private String estado;
+	private String movimiento;
+	private double saldoDisponible;
+
 }

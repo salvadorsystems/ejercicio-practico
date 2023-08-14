@@ -32,27 +32,27 @@ public class CuentaModel {
 	@SequenceGenerator(sequenceName = "SEQ_CUENTA", allocationSize = 1, name = "seqCuenta")
 	@Builder.Default
 	private Long id = 0L;
-	
+
 	@NotNull(message = "El numero de cuenta es necesario")
 	@Size(min = 3, max = 20, message = "El numero de cuenta debe tener como minimo {min} y como maximo {max} caracteres")
 	@Column(name = "NUM_CUENTA")
 	private String numCuenta;
-	
+
 	@NotNull(message = "El tipo de cuenta es necesario")
 	@Size(min = 3, max = 50, message = "El tipo de cuenta debe tener como minimo {min} y como maximo {max} caracteres")
 	@Column(name = "TIP_CUENTA")
-	private String tipCuenta;	
-	
+	private String tipCuenta;
+
 	@NotNull(message = "El tipo de cuenta es necesario")
 	@Column(name = "SALDO_INIT")
-	private double saldoInit;	
-	
+	private double saldoInit;
+
 	@Column(name = "ESTADO")
 	@Builder.Default
-	private String estado="1";
-	
+	private String estado = "1";
+
 	@ManyToOne
-	@JoinColumn(name="ID_CLIENTE", nullable=false)
+	@JoinColumn(name = "ID_CLIENTE", nullable = false)
 	private ClienteModel clienteModel;
-	
+
 }

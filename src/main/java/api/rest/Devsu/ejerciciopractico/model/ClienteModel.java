@@ -24,22 +24,22 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "ClienteModel")
 @Data
 @Table(name = "CLIENTE")
-public class ClienteModel extends PersonaModel{
-	
+public class ClienteModel extends PersonaModel {
+
 	@Id
 	@Column(name = "ID_CLIENTE")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCliente")
 	@SequenceGenerator(sequenceName = "SEQ_CLIENTE", allocationSize = 1, name = "seqCliente")
 	@Builder.Default
 	private Long id = 0L;
-	
+
 	@NotNull(message = "La contraseña del cliente es necesario")
 	@Size(min = 3, max = 20, message = "La contraseña debe tener como minimo {min} y como maximo {max} caracteres")
 	@Column(name = "CONTRASEÑA")
 	private String contraseña;
-	
+
 	@Column(name = "ESTADO")
 	@Builder.Default
-	private String estado="1";
-	
+	private String estado = "1";
+
 }

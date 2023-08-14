@@ -25,7 +25,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
 @EqualsAndHashCode(callSuper = false)
 @Builder
 @AllArgsConstructor
@@ -35,7 +34,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "MOVIMIENTOS")
 public class MovimientoModel {
 
-	
 	@Id
 	@Column(name = "ID_MOVIMIENTO")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMovimientos")
@@ -43,30 +41,30 @@ public class MovimientoModel {
 	@Builder.Default
 	private Long id = 0L;
 
-	
 	@PrePersist
-	private void setfechaRegistro() {		
-		fecha= LocalDateTime.now();
+	private void setfechaRegistro() {
+		fecha = LocalDateTime.now();
 	}
+
 	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	@Column(name = "FECHA_MOV")
 	private LocalDateTime fecha;
-	
+
 	@NotNull(message = "El tipo de Movimiento es necesario")
 	@Size(min = 3, max = 50, message = "El tipo de Movimiento debe tener como minimo {min} y como maximo {max} caracteres")
 	@Column(name = "TIP_MOV")
 	private String tipMov;
-	
-	@Positive(message = "El valor debe ser positivo")	
+
+	@Positive(message = "El valor debe ser positivo")
 	@Column(name = "VALOR")
 	private double valor;
-	
-	@PositiveOrZero(message = "El saldo deber ser positivo o cero")	
+
+	@PositiveOrZero(message = "El saldo deber ser positivo o cero")
 	@Column(name = "SALDO")
 	private double saldoDisponible;
-	
+
 	@ManyToOne
-	@JoinColumn(name="ID_CUENTA", nullable=false)
+	@JoinColumn(name = "ID_CUENTA", nullable = false)
 	private CuentaModel cuentaModel;
-	
+
 }

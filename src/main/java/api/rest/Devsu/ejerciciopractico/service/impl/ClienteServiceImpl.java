@@ -14,24 +14,22 @@ import api.rest.Devsu.ejerciciopractico.service.ClienteService;
 import api.rest.Devsu.ejerciciopractico.service.exception.ServiceException;
 
 @Service
-public class ClienteServiceImpl implements ClienteService{
+public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Override
 	public List<ClienteDTO> findClienteAll() {
 		// TODO Auto-generated method stub
 		List<ClienteModel> clientesModel;
 		clientesModel = clienteRepository.findAll();
-		List<ClienteDTO> clientesDTO = clientesModel.stream()
-				.filter(cliente -> "1".equals(cliente.getEstado()))
-				.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNombres(), cliente.getGenero(), 
-						cliente.getTipoDoc(),cliente.getNumDoc(), cliente.getDireccion(), cliente.getTelefono(),
-						cliente.getContraseña(),cliente.getEstado().equalsIgnoreCase("1") ? "true" : "false"))
+		List<ClienteDTO> clientesDTO = clientesModel.stream().filter(cliente -> "1".equals(cliente.getEstado()))
+				.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNombres(), cliente.getGenero(),
+						cliente.getTipoDoc(), cliente.getNumDoc(), cliente.getDireccion(), cliente.getTelefono(),
+						cliente.getContraseña(), cliente.getEstado().equalsIgnoreCase("1") ? "true" : "false"))
 				.collect(Collectors.toList());
 
-				
 		return clientesDTO;
 	}
 
@@ -54,7 +52,7 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	public ClienteDTO updateCliente(ClienteDTO cliente) {
 		// TODO Auto-generated method stub
-		
+
 		ClienteModel clienteModelIn = new ClienteModel();
 		clienteModelIn.setId(cliente.getId());
 		clienteModelIn.setNombres(cliente.getNombres());
@@ -67,7 +65,7 @@ public class ClienteServiceImpl implements ClienteService{
 		clienteModelIn.setEstado(cliente.getEstado().equalsIgnoreCase("true") ? "1" : "0");
 
 		clienteRepository.save(clienteModelIn);
-		
+
 		return cliente;
 	}
 
@@ -82,16 +80,15 @@ public class ClienteServiceImpl implements ClienteService{
 		// TODO Auto-generated method stub
 		Optional<ClienteModel> clientesModel;
 		clientesModel = clienteRepository.findById(id);
-		
-		if(clientesModel.isEmpty()) {
+
+		if (clientesModel.isEmpty()) {
 			throw new ServiceException("El cliente no existe.");
 		}
-		
-		List<ClienteDTO> clientesDTO = clientesModel.stream()
-				.filter(cliente -> "1".equals(cliente.getEstado()))
-				.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNombres(), cliente.getGenero(), 
-						cliente.getTipoDoc(),cliente.getNumDoc(), cliente.getDireccion(), cliente.getTelefono(), 
-						cliente.getContraseña(),cliente.getEstado().equalsIgnoreCase("1") ? "true" : "false"))
+
+		List<ClienteDTO> clientesDTO = clientesModel.stream().filter(cliente -> "1".equals(cliente.getEstado()))
+				.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNombres(), cliente.getGenero(),
+						cliente.getTipoDoc(), cliente.getNumDoc(), cliente.getDireccion(), cliente.getTelefono(),
+						cliente.getContraseña(), cliente.getEstado().equalsIgnoreCase("1") ? "true" : "false"))
 				.collect(Collectors.toList());
 
 		return clientesDTO.get(0);
@@ -102,16 +99,15 @@ public class ClienteServiceImpl implements ClienteService{
 		// TODO Auto-generated method stub
 		Optional<ClienteModel> clientesModel;
 		clientesModel = clienteRepository.findByNumDoc(docIdenti);
-		
-		if(clientesModel.isEmpty()) {
+
+		if (clientesModel.isEmpty()) {
 			throw new ServiceException("El cliente no existe.");
 		}
-		
-		List<ClienteDTO> clientesDTO = clientesModel.stream()
-				.filter(cliente -> "1".equals(cliente.getEstado()))
-				.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNombres(), cliente.getGenero(), 
-						cliente.getTipoDoc(),cliente.getNumDoc(), cliente.getDireccion(), cliente.getTelefono(), 
-						cliente.getContraseña(),cliente.getEstado().equalsIgnoreCase("1") ? "true" : "false"))
+
+		List<ClienteDTO> clientesDTO = clientesModel.stream().filter(cliente -> "1".equals(cliente.getEstado()))
+				.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNombres(), cliente.getGenero(),
+						cliente.getTipoDoc(), cliente.getNumDoc(), cliente.getDireccion(), cliente.getTelefono(),
+						cliente.getContraseña(), cliente.getEstado().equalsIgnoreCase("1") ? "true" : "false"))
 				.collect(Collectors.toList());
 
 		return clientesDTO.get(0);

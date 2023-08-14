@@ -27,49 +27,49 @@ public class CuentaController {
 
 	@Autowired
 	private CuentaService cuentaService;
-	
+
 	@GetMapping(produces = "application/json")
 	public ResponseEntity<List<CuentaDTO>> listar() {
 		List<CuentaDTO> cuentas = new ArrayList<>();
 		cuentas = cuentaService.findCuentaAll();
 		return new ResponseEntity<List<CuentaDTO>>(cuentas, HttpStatus.OK);
 	}
-	
+
 	@PostMapping
-    public ResponseEntity<CuentaDTO> crearCuenta(@Valid @RequestBody CuentaDTO cuenta){		
+	public ResponseEntity<CuentaDTO> crearCuenta(@Valid @RequestBody CuentaDTO cuenta) {
 		cuentaService.createCuenta(cuenta);
-        return new ResponseEntity<CuentaDTO>(HttpStatus.CREATED);
-    }
-	
+		return new ResponseEntity<CuentaDTO>(HttpStatus.CREATED);
+	}
+
 	@GetMapping("numDoc/{numDoc}")
-	public ResponseEntity<List<CuentaDTO>> getCuentaByCliente(@PathVariable("numDoc") String numDoc){
-		List<CuentaDTO> cuenta= cuentaService.getCuentaByCliente(numDoc);
+	public ResponseEntity<List<CuentaDTO>> getCuentaByCliente(@PathVariable("numDoc") String numDoc) {
+		List<CuentaDTO> cuenta = cuentaService.getCuentaByCliente(numDoc);
 		return new ResponseEntity<List<CuentaDTO>>(cuenta, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("numCuenta/{numCuenta}")
-	public ResponseEntity<List<CuentaDTO>> getCuentaByNumCuenta(@PathVariable("numCuenta") String numCuenta){
-		List<CuentaDTO> cuenta= cuentaService.getCuentaBynumCuenta(numCuenta);
+	public ResponseEntity<List<CuentaDTO>> getCuentaByNumCuenta(@PathVariable("numCuenta") String numCuenta) {
+		List<CuentaDTO> cuenta = cuentaService.getCuentaBynumCuenta(numCuenta);
 		return new ResponseEntity<List<CuentaDTO>>(cuenta, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<CuentaModel> deleteCuenta(@PathVariable("id") Long id){
-		cuentaService.deleteCuenta(id);		
+	public ResponseEntity<CuentaModel> deleteCuenta(@PathVariable("id") Long id) {
+		cuentaService.deleteCuenta(id);
 		return ResponseEntity.ok().build();
 	}
+
 	@PutMapping("/{id}")
-	public CuentaDTO updateCuenta(@PathVariable("id") Long id, @Valid @RequestBody CuentaDTO cuenta){
-		
-		CuentaDTO dCuenta =  cuentaService.getCuenta(id);
+	public CuentaDTO updateCuenta(@PathVariable("id") Long id, @Valid @RequestBody CuentaDTO cuenta) {
+
+		CuentaDTO dCuenta = cuentaService.getCuenta(id);
 		dCuenta.setNumCuenta(cuenta.getNumCuenta());
 		dCuenta.setEstado(cuenta.getEstado());
 		dCuenta.setTipCuenta(cuenta.getTipCuenta());
 		dCuenta.setSaldoInit(cuenta.getSaldoInit());
-		dCuenta.setClienteDTO(cuenta.getClienteDTO());		
-		
+		dCuenta.setClienteDTO(cuenta.getClienteDTO());
+
 		return cuentaService.updateCuenta(dCuenta);
 	}
-		
-	
+
 }

@@ -27,43 +27,43 @@ public class MovimientoController {
 
 	@Autowired
 	private MovimientoService movimientoService;
-	
+
 	@GetMapping(produces = "application/json")
 	public ResponseEntity<List<MovimientoDTO>> listar() {
 		List<MovimientoDTO> movimientos = new ArrayList<>();
 		movimientos = movimientoService.findMovimientoAll();
 		return new ResponseEntity<List<MovimientoDTO>>(movimientos, HttpStatus.OK);
 	}
-	
+
 	@PostMapping
-    public ResponseEntity<MovimientoDTO> crearMovimiento(@Valid @RequestBody MovimientoDTO movimiento){		
+	public ResponseEntity<MovimientoDTO> crearMovimiento(@Valid @RequestBody MovimientoDTO movimiento) {
 		movimientoService.createMovimiento(movimiento);
-        return new ResponseEntity<MovimientoDTO>(HttpStatus.CREATED);
-    }
-	
+		return new ResponseEntity<MovimientoDTO>(HttpStatus.CREATED);
+	}
+
 	@GetMapping("numDoc/{numDoc}")
-	public ResponseEntity<List<MovimientoDTO>> getMovimientoByNumDoc(@PathVariable("numDoc") String numDoc){
-		List<MovimientoDTO> movimiento= movimientoService.getMovimientoByNumDoc(numDoc);
+	public ResponseEntity<List<MovimientoDTO>> getMovimientoByNumDoc(@PathVariable("numDoc") String numDoc) {
+		List<MovimientoDTO> movimiento = movimientoService.getMovimientoByNumDoc(numDoc);
 		return new ResponseEntity<List<MovimientoDTO>>(movimiento, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<MovimientoModel> deleteMovimiento(@PathVariable("id") Long id){
-		movimientoService.deleteMovimiento(id);		
+	public ResponseEntity<MovimientoModel> deleteMovimiento(@PathVariable("id") Long id) {
+		movimientoService.deleteMovimiento(id);
 		return ResponseEntity.ok().build();
 	}
+
 	@PutMapping("/{id}")
-	public MovimientoDTO updateMovimiento(@PathVariable("id") Long id, @Valid @RequestBody MovimientoDTO movimiento){
-		
-		MovimientoDTO dMovimiento =  movimientoService.getMovimiento(id);
+	public MovimientoDTO updateMovimiento(@PathVariable("id") Long id, @Valid @RequestBody MovimientoDTO movimiento) {
+
+		MovimientoDTO dMovimiento = movimientoService.getMovimiento(id);
 		dMovimiento.setTipMov(movimiento.getTipMov());
 		dMovimiento.setFecha(movimiento.getFecha());
 		dMovimiento.setValor(movimiento.getValor());
 		dMovimiento.setSaldoDisponible(movimiento.getSaldoDisponible());
-		dMovimiento.setCuentaDTO(movimiento.getCuentaDTO());		
-		
+		dMovimiento.setCuentaDTO(movimiento.getCuentaDTO());
+
 		return movimientoService.updateMovimiento(dMovimiento);
 	}
-		
-	
+
 }

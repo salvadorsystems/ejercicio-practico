@@ -24,17 +24,18 @@ public class ReporteController {
 
 	@Autowired
 	private ReporteService reporteService;
-			
+
 	@GetMapping()
 	public ResponseEntity<List<ReporteDTO>> getReporte(
-            @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaInicio,
-            @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaFin,
-            @RequestParam String numDoc) {
-		List<ReporteDTO> reportes =  new ArrayList<>();
+			@RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaInicio,
+			@RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaFin, @RequestParam String numDoc) {
+		List<ReporteDTO> reportes = new ArrayList<>();
 		Instant instantIni = fechaInicio.toInstant();
 		Instant instantFin = fechaFin.toInstant();
-	        reportes = reporteService.getReporteByFechaCuenta_numDoc(instantIni.atZone(ZoneId.systemDefault()).toLocalDateTime(), instantFin.atZone(ZoneId.systemDefault()).toLocalDateTime(), numDoc);
+		reportes = reporteService.getReporteByFechaCuenta_numDoc(
+				instantIni.atZone(ZoneId.systemDefault()).toLocalDateTime(),
+				instantFin.atZone(ZoneId.systemDefault()).toLocalDateTime(), numDoc);
 		return new ResponseEntity<List<ReporteDTO>>(reportes, HttpStatus.OK);
 	}
-	
+
 }

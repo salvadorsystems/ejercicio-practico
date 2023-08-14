@@ -19,5 +19,5 @@ public class MovimientoDTO {
 	private double valor;
 	private double saldoDisponible;
 	private CuentaDTO cuentaDTO;
-	
+
 }

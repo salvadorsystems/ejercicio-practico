@@ -14,7 +14,7 @@ public class CuentaDTO {
 	private Long id;
 	private String numCuenta;
 	private String tipCuenta;
-	private double saldoInit;	
+	private double saldoInit;
 	private String estado;
 	private ClienteDTO clienteDTO;
 }

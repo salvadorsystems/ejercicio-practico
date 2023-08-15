@@ -23,7 +23,7 @@ class EjercicioPracticoApplicationTests {
 	@Test
 	void getClienteByIdenti() {
 		ClienteDTO clienteDTO = new ClienteDTO();
-		clienteDTO.setId(41L);
+		clienteDTO.setId(61L);
 		clienteDTO.setNombres("MARCO SALVADOR");
 		clienteDTO.setGenero("MASCULINO");
 		clienteDTO.setTipoDoc("DNI");
@@ -40,7 +40,7 @@ class EjercicioPracticoApplicationTests {
 	void getCuentaByCliente() {
 		
 		ClienteDTO clienteDTO = new ClienteDTO();
-		clienteDTO.setId(41L);
+		clienteDTO.setId(61L);
 		clienteDTO.setNombres("MARCO SALVADOR");
 		clienteDTO.setGenero("MASCULINO");
 		clienteDTO.setTipoDoc("DNI");
@@ -51,14 +51,14 @@ class EjercicioPracticoApplicationTests {
 		clienteDTO.setEstado("true");
 		
 		CuentaDTO cuentaDTO = new CuentaDTO();
-		cuentaDTO.setId(14L);
+		cuentaDTO.setId(21L);
 		cuentaDTO.setNumCuenta("987654321");
 		cuentaDTO.setTipCuenta("CUENTA AHORRO - VISA");
-		cuentaDTO.setSaldoInit(1580);
+		cuentaDTO.setSaldoInit(100);
 		cuentaDTO.setEstado("true");
 		cuentaDTO.setClienteDTO(clienteDTO);
 		
-		CuentaDTO cuentaDTOResp = cuentaService.getCuenta(14L);
+		CuentaDTO cuentaDTOResp = cuentaService.getCuenta(21L);
 		
 		assertEquals(cuentaDTOResp.getSaldoInit(), cuentaDTO.getSaldoInit());
 	}

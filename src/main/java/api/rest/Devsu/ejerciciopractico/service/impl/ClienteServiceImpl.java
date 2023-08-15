@@ -85,7 +85,7 @@ public class ClienteServiceImpl implements ClienteService {
 		clientesModel = clienteRepository.findById(id);
 
 		if (clientesModel.isEmpty()) {
-			log.info("El cliente ingresado no existe. [{}]",id);
+			log.info("El cliente ingresado no existe. [{}]",id);			
 			throw new ServiceException("El cliente ingresado no existe.");
 		}
 
@@ -105,7 +105,7 @@ public class ClienteServiceImpl implements ClienteService {
 		clientesModel = clienteRepository.findByNumDoc(docIdenti);
 
 		if (clientesModel.isEmpty()) {
-			log.info("El cliente ingresado no existe. [{}]",docIdenti);
+			log.info("El cliente ingresado no existe. [{}]",docIdenti);			
 			throw new ServiceException("El cliente ingresado no existe.");
 		}
 

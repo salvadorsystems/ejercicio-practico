@@ -35,7 +35,8 @@ public class ReporteServiceImpl implements ReporteService {
 		List<ReporteDTO> ultimosMovimientosPorTipo = movimientos.stream()
 				.map(movimiento -> new ReporteDTO(movimiento.getFecha(),
 						movimiento.getCuentaModel().getClienteModel().getNombres(),
-						movimiento.getCuentaModel().getNumCuenta(), movimiento.getCuentaModel().getTipCuenta(),
+						movimiento.getCuentaModel().getNumCuenta(), 
+						movimiento.getCuentaModel().getTipCuenta(),
 						movimiento.getTipMov().equalsIgnoreCase("Deposito")
 								? movimiento.getCuentaModel().getSaldoInit() - movimiento.getValor()
 								: movimiento.getCuentaModel().getSaldoInit() + movimiento.getValor(),

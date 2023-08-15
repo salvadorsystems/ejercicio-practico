@@ -58,7 +58,6 @@ public class MovimientoController {
 
 		MovimientoDTO dMovimiento = movimientoService.getMovimiento(id);
 		dMovimiento.setTipMov(movimiento.getTipMov());
-		dMovimiento.setFecha(movimiento.getFecha());
 		dMovimiento.setValor(movimiento.getValor());
 		dMovimiento.setSaldoDisponible(movimiento.getSaldoDisponible());
 		dMovimiento.setCuentaDTO(movimiento.getCuentaDTO());

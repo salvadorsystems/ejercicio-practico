@@ -2,7 +2,6 @@ package api.rest.Devsu.ejerciciopractico.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import api.rest.Devsu.ejerciciopractico.dto.ClienteDTO;
 import api.rest.Devsu.ejerciciopractico.model.ClienteModel;
 import api.rest.Devsu.ejerciciopractico.service.ClienteService;
-import api.rest.Devsu.ejerciciopractico.service.exception.ServiceException;
 
 @RestController
 @RequestMapping("/clientes")
@@ -41,18 +39,12 @@ public class ClienteController {
 	public ResponseEntity<ClienteDTO> crearCliente(@Valid @RequestBody ClienteDTO cliente) {
 
 		clienteService.createCliente(cliente);
-		return new ResponseEntity<ClienteDTO>(HttpStatus.CREATED);
+		return new ResponseEntity<ClienteDTO>(HttpStatus.OK);
 	}
 
 	@GetMapping("/{docIdenti}")
 	public ResponseEntity<ClienteDTO> getClienteByIdenti(@PathVariable("docIdenti") String docIdenti) {
 		ClienteDTO cliente = clienteService.getClienteByIdenti(docIdenti);
-
-		Optional<ClienteDTO> optionalClienteDTO = Optional.ofNullable(cliente);
-
-		if (!optionalClienteDTO.isPresent()) {
-			throw new ServiceException("El Cliente no existe.");
-		}
 
 		return new ResponseEntity<ClienteDTO>(cliente, HttpStatus.OK);
 	}
